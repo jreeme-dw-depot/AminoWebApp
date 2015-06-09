@@ -1,7 +1,6 @@
 {
   "name": "Amino",
   "version": "0.0.0",
-  "main": "bin/www",
   "scripts": {
     "start": "node ./bin/www",
     "preinstall": "/bin/bash -c \"cd public && bower install\""
