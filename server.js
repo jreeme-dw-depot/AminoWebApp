@@ -1,12 +1,13 @@
-var express = require('express');
-var app = module.exports = express();
+var loopback = require('loopback');
+var app = module.exports = loopback();
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
 //boot(app, __dirname);
 
-app.listen(8080, function () {
-  app.emit('started');
-  console.log('Web server listening at: %s', app.get('url'));
+app.get('/', function(req,res){
+  res.send('hello world');
 });
+
+app.listen(3001);
 
