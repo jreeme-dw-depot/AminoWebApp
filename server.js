@@ -1,5 +1,6 @@
 var debug = require('debug')('server');
-var express = require('express');
+var express = require('loopback');
+//var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -9,7 +10,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // handle server listen port this way for now
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 8080);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
