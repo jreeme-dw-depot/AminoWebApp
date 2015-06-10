@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // handle server listen port this way for now
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 3001);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
