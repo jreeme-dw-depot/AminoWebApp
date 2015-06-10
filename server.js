@@ -66,5 +66,6 @@ app.use(function (err, req, res, next) {
 
 // and let's get things started
 var server = app.listen(app.get('port'), function() {
+  app.emit('started');
   debug('Express server listening on port ' + server.address().port);
 });
