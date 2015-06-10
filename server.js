@@ -1,6 +1,20 @@
+var loopback = require('express');
+var app = module.exports = loopback();
+
+app.get('/', function(req,res){
+  res.send('hello world');
+});
+
+app.start = function() {
+  return app.listen(3001, function() {
+    app.emit('started');
+    console.log('Web server listening at: %s', app.get('url'));
+  });
+};
+app.start();
+return;
 var debug = require('debug')('server');
-var express = require('loopback');
-//var express = require('express');
+var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
