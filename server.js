@@ -11,9 +11,9 @@ app.start = function() {
     console.log('Web server listening at: %s', app.get('url'));
   });
 };
+
 app.start();
-return;
-var debug = require('debug')('server');
+/*var debug = require('debug')('server');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -82,4 +82,4 @@ app.use(function (err, req, res, next) {
 var server = app.listen(app.get('port'), function() {
   app.emit('started');
   debug('Express server listening on port ' + server.address().port);
-});
+});*/
