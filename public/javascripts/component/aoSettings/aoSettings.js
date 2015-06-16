@@ -4,29 +4,30 @@ angular.module('aoSettings', ['ngCookies','ngDialog'])
         return {
         };
     })
-    .directive('aoSettings', function (userUrl) {
+    .directive('aoSettings',['userUrl','changeThemeMsg','configurationService','setFullNameMsg','errorService','themeService',
+        function (userUrl,changeThemeMsg,configurationService,setFullNameMsg,errorService,themeService) {
         return{
             restrict: 'E',
             templateUrl: '/views/partials/settingsLink',
-            controller: function($scope, ngDialog, $http, $cookies,$rootScope){
+            controller: function($scope, ngDialog, $http, $cookies){
 
                 $scope.openSettings = function(res){
                     ngDialog.openConfirm({
                         template: '/views/partials/settings',
-                        controller: ['$scope','$rootScope', function ($scope,$rootScope) {
+                        controller: ['$scope', function ($scope) {
                             $scope.url = userUrl + "/" + $cookies.userId ;
                             $scope.data = res;
-                            $scope.themes = $rootScope.themes;
+                            $scope.themes = themeService.themes;
                             $scope.currentTheme = !$scope.data.themeName?$scope.themes[0].name:$scope.data.themeName;
 
                             $scope.cancel = function(){
                                 $scope.closeThisDialog(null);
                                 if($scope.data.themeName != $scope.currentTheme )
-                                    $rootScope.$emit("changeTheme", $scope.currentTheme );
+                                    changeThemeMsg.broadcast($scope.currentTheme);
                             };
 
                             $scope.changeTheme = function(){
-                                $rootScope.$emit("changeTheme", $scope.data.themeName);
+                                changeThemeMsg.broadcast($scope.data.themeName);
                             };
 
                             $scope.save = function(){
@@ -42,12 +43,12 @@ angular.module('aoSettings', ['ngCookies','ngDialog'])
                                     }
                                 }).success(function (res) {
                                     //update our root config vars
-                                    $rootScope.fullname = $scope.data.fullname;
-                                    $rootScope.serviceHostName = $scope.data.serviceHostName;
-                                    $rootScope.servicePort = $scope.data.servicePort;
-                                    $rootScope.$emit("setfullname");
+                                    configurationService.set('fullname', $scope.data.fullname);
+                                    configurationService.set('serviceHostName', $scope.data.serviceHostName);
+                                    configurationService.set('servicePort' , $scope.data.servicePort);
+                                    setFullNameMsg.broadcast();
                                     $scope.closeThisDialog(null);
-                                }).error($rootScope.showError);
+                                }).error(errorService.showError);
                             };
                         }]
                     });
@@ -62,8 +63,8 @@ angular.module('aoSettings', ['ngCookies','ngDialog'])
                         }
                     })
                     .success($scope.openSettings)
-                    .error($rootScope.showError);
+                    .error(errorService.showError);
                 };
             }
         };
-    });
+    }]);

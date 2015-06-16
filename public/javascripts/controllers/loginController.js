@@ -1,8 +1,8 @@
 angular.module('NodeWebBase')
 		.constant('authUrl', '/login')
 		.constant('userUrl', '/users')
-		.controller('loginController', ['$scope', '$http', '$window', '$cookies', '$rootScope', 'ngDialog','authUrl',
-		 function ($scope, $http, $window, $cookies, $rootScope, ngDialog, authUrl) {
+		.controller('loginController', ['$scope', '$http', '$window', '$cookies', 'ngDialog','authUrl',
+		 function ($scope, $http, $window, $cookies, ngDialog, authUrl) {
 			// Do the whole check cookies for last username, etc.
 			$scope.data = {
 				rememberMe: $cookies.rememberMe === 'true',

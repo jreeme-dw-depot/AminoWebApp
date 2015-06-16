@@ -4,14 +4,14 @@ angular.module('logout', ['ngCookies'])
 
         };
     })
-    .directive('logout', function ($rootScope) {
+    .directive('logout', ['configurationService','setFullNameMsg', function (configurationService,setFullNameMsg) {
         return{
             restrict: 'E',
             templateUrl: '/views/partials/logout',
             controller: ['$scope',function($scope){
-                $rootScope.$on('setfullname', function(){
-                    $scope.fullname = $rootScope.fullname;
+                setFullNameMsg.listen(function(){
+                    $scope.fullname = configurationService.get('fullname');
                 });
             }]
         };
-    });
+    }]);
