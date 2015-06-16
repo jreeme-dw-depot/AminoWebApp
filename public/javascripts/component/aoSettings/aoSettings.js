@@ -34,9 +34,7 @@ angular.module('aoSettings', ['ngCookies','ngDialog'])
                                 $http.post($scope.url,{
                                     "fullname": $scope.data.fullname,
                                     "email": $scope.data.email,
-                                    "themeName": $scope.data.themeName,
-                                    "serviceHostName":$scope.data.serviceHostName,
-                                    "servicePort":$scope.data.servicePort
+                                    "themeName": $scope.data.themeName
                                 },{
                                     params: {
                                         access_token: $cookies.access_token
@@ -44,8 +42,6 @@ angular.module('aoSettings', ['ngCookies','ngDialog'])
                                 }).success(function (res) {
                                     //update our root config vars
                                     configurationService.set('fullname', $scope.data.fullname);
-                                    configurationService.set('serviceHostName', $scope.data.serviceHostName);
-                                    configurationService.set('servicePort' , $scope.data.servicePort);
                                     setFullNameMsg.broadcast();
                                     $scope.closeThisDialog(null);
                                 }).error(errorService.showError);

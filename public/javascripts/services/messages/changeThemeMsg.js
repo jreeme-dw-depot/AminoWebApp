@@ -2,7 +2,7 @@ angular.module('NodeWebBase')
     .service('changeThemeMsg', ['$rootScope',function ($rootScope) {
 
         this.broadcast = function broadcast() {
-            var args = ['changeTheme']
+            var args = ['changeTheme'];
             Array.prototype.push.apply(args,arguments);
             $rootScope.$broadcast.apply($rootScope, args);
         };
