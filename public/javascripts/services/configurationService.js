@@ -1,7 +1,7 @@
 angular.module('NodeWebBase')
     .constant('userUrl', '/users/')
-    .service('configurationService', ['$http','$cookies','userUrl','themeChangedMsg','setFullNameMsg','errorService',
-        function ($http, $cookies,userUrl,themeChangedMsg,setFullNameMsg,errorService) {
+    .service('configurationService', ['$http','$cookies','userUrl','changeThemeMsg','setFullNameMsg','errorService',
+        function ($http, $cookies,userUrl,changeThemeMsg,setFullNameMsg,errorService) {
         var me = this;
         me.config = {};
 
@@ -32,7 +32,7 @@ angular.module('NodeWebBase')
             me.set('themeName', res.themeName);
 
             setFullNameMsg.broadcast();
-            themeChangedMsg.broadcast(res.themeName);
+            changeThemeMsg.broadcast(res.themeName);
         };
 
         me.isAppConfigured = function(){
