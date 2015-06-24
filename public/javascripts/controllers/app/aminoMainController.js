@@ -1,6 +1,6 @@
 angular.module('NodeWebBase')
-    .controller('aminoMainController', ['$scope','$http','$cookies','ngDialog','configurationService',
-    function ($scope, $http, $cookies, ngDialog,configurationService) {
+    .controller('aminoMainController', ['$scope','$http','$cookies','ngDialog','configurationService','errorService',
+    function ($scope, $http, $cookies, ngDialog,configurationService,errorService) {
         $scope.scopeName = "aminoMainController";
          $scope.sizes = [];
         $scope.setStyle = function(style)

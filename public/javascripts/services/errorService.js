@@ -8,7 +8,7 @@ angular.module('NodeWebBase')
 
         me.showErrorMessage = function (source, reason) {
             ngDialog.openConfirm({
-                template: '/views/genericError',
+                template: '/views/partials/genericError',
                 controller: ['$scope', function ($scope) {
                     $scope.errorMessage = source + ":" + reason;
                     $scope.close = function () {
@@ -20,7 +20,7 @@ angular.module('NodeWebBase')
 
         me.showError = function (jqxhr, testStatus, reason) {
             ngDialog.openConfirm({
-                template: '/views/genericError',
+                template: '/views/partials/genericError',
                 controller: ['$scope', function ($scope) {
                     $scope.errorMessage = reason + ' ' + jqxhr.responseText;
                     $scope.close = function () {
